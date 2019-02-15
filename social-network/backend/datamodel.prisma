@@ -1,0 +1,22 @@
+type Person {
+  id: ID! @unique
+  name: String!
+  email: String!
+  inbox: [Conversation!]!
+  bio: String
+}
+
+type Conversation {
+  between: Group!
+  messages: [Message!]!
+}
+
+type Group {
+  participants: [Person!]!
+}
+
+type Message {
+  from: Person!
+  sentAt: DateTime!
+  body: String!
+}

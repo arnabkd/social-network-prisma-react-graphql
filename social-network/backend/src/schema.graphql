@@ -1,0 +1,42 @@
+type Query {
+  personsConnection: PersonsConnection!
+}
+
+type Mutation {
+  createPerson(name: String!, email: String!, bio: String): Person!
+  startConversation(firstPersonId: ID!, secondPersonId : ID!): Conversation!
+}
+
+type Conversation {
+  firstPerson: Person!
+  secondPerson: Person!
+}
+
+type Person {
+  id: ID!
+  name: String!
+  bio: String
+  email: String!
+}
+
+type PersonsConnection {
+  edges: [PersonEdge!]!
+  pageInfo: PageInfo!
+  aggregate: AggregatePerson!
+}
+
+type PersonEdge {
+  node: Person!
+  cursor: String!
+}
+
+type AggregatePerson {
+  count: Int!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
